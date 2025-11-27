@@ -51,36 +51,35 @@ https://dlcdn.apache.org/spark/spark-3.5.7/spark-3.5.7-bin-hadoop3.tgz
 
 `JAVA_HOME`
 
-Windows: `echo %JAVA_HOME%`
+#### Windows: `echo %JAVA_HOME%`
 
-macOS: `echo $JAVA_HOME`
-Путь должен указывать на директорию JDK 17.
+#### macOS: `echo $JAVA_HOME`
+#### Путь должен указывать на директорию JDK 17.
 
 `SPARK_HOME`
 
-Windows: `echo %SPARK_HOME%`
+#### Windows: `echo %SPARK_HOME%`
 
-macOS: `echo $SPARK_HOME`
-Должен указывать на директорию spark-3.5.7-bin-hadoop3.
+#### macOS: `echo $SPARK_HOME`
+#### Должен указывать на директорию spark-3.5.7-bin-hadoop3.
 
 `PATH`
-В PATH должны фигурировать:
+#### В PATH должны фигурировать:
 
 Windows: `%JAVA_HOME%\bin`, `%SPARK_HOME%\bin`, `%HADOOP_HOME%\bin` (если на Windows).
 
 macOS: `$JAVA_HOME/bin`, `$SPARK_HOME/bin`.
 
-Проверка `spark-shell --version`
+ Проверка `spark-shell --version`
 Если shell вообще не стартует — ошибка в `JAVA_HOME` или `SPARK_HOME`.
 
-Для Windows:
+#### Для Windows:
 
-Проверьте наличие `C:\hadoop\bin\winutils.exe`.
+ Проверьте наличие `C:\hadoop\bin\winutils.exe`.
 
-Проверьте переменную `HADOOP_HOME` и наличие `%HADOOP_HOME%\bin` в `Path`.
+ Проверьте переменную `HADOOP_HOME` и наличие `%HADOOP_HOME%\bin` в `Path`.
 
-Для Jupyter:
-
+#### Для Jupyter:
 Установлен ли пакет pyspark в той же среде, где запущен Jupyter (`pip show pyspark`)?
 
 Не конфликтуют ли несколько версий Python / разные окружения?

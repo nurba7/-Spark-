@@ -110,8 +110,7 @@ A4. Установка winutils.exe (Hadoop tools для Windows)
 
 В cmd создайте папки:
 
-cmd
-Копировать код
+```cmd
 C:
 cd \
 mkdir hadoop
@@ -121,16 +120,14 @@ mkdir bin
 
 Скачайте winutils.exe для Hadoop 3.3.x (пример через curl):
 
-cmd
-Копировать код
+```cmd
 curl --ssl-no-revoke -L -o C:\hadoop\bin\winutils.exe ^
   https://github.com/cdarlint/winutils/raw/master/hadoop-3.3.5/bin/winutils.exe
 ⚠️ Это не официальный бинарь Apache, а удобный костыль для локальной разработки на Windows.
 
 Проверьте, что файл скачался:
 
-cmd
-Копировать код
+```cmd
 cd C:\hadoop\bin
 dir
 В списке файлов должен быть winutils.exe.
@@ -154,16 +151,14 @@ A5. Настройка SPARK_HOME и HADOOP_HOME (Windows)
 
 В списке системных переменных найдите Path → Изменить... → Создать и добавьте строки:
 
-text
-Копировать код
+```cmd
 %SPARK_HOME%\bin
 %HADOOP_HOME%\bin
 Нажмите OK во всех окнах, закройте cmd, откройте новое окно cmd.
 
 Проверьте:
 
-cmd
-Копировать код
+```cmd
 echo %SPARK_HOME%
 echo %HADOOP_HOME%
 spark-shell --version
@@ -171,34 +166,30 @@ spark-shell --version
 
 A6. Быстрая проверка Spark на Windows
 Scala shell
-cmd
-Копировать код
+```cmd
 spark-shell
 После загрузки увидите приглашение:
 
-text
-Копировать код
+```cmd
 scala>
 Можно выполнить тест:
 
-scala
-Копировать код
+```cmd
 scala> sc.parallelize(1 to 5).map(_ * 2).collect()
 res0: Array[Int] = Array(2, 4, 6, 8, 10)
 PySpark (интерактивный режим)
-cmd
-Копировать код
+```cmd
 pyspark
 В конце:
 
-text
+```text
 Копировать код
 Python 3.x.x (default, ...)
 Type "help", "copyright", ...
 >>>
 Проверка контекста:
 
-python
+```python
 Копировать код
 >>> sc
 >>> sc.version
@@ -207,7 +198,7 @@ python
 A7. Тестовый скрипт PySpark (Windows)
 Создайте файл C:\tools\spark\test_spark.py:
 
-python
+```python
 Копировать код
 from pyspark.sql import SparkSession
 
@@ -223,7 +214,7 @@ df.show()
 spark.stop()
 Запустите:
 
-cmd
+```cmd
 Копировать код
 cd C:\tools\spark
 python test_spark.py
@@ -233,19 +224,19 @@ python test_spark.py
 B1. Установка JDK 17 через Homebrew
 Откройте Terminal и проверьте Homebrew:
 
-bash
+```bash
 Копировать код
 brew --version
 Если команда не найдена — установите Homebrew по инструкции с официального сайта.
 
 Установите JDK 17:
 
-bash
+```bash
 Копировать код
 brew install openjdk@17
 Добавьте JDK 17 в PATH и задайте JAVA_HOME (для zsh):
 
-bash
+```bash
 Копировать код
 echo 'export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"' >> ~/.zshrc
 echo 'export JAVA_HOME=$(/usr/libexec/java_home -v 17)' >> ~/.zshrc
@@ -255,43 +246,43 @@ source ~/.zshrc
 
 Проверьте:
 
-bash
+```bash
 Копировать код
 java -version
 echo $JAVA_HOME
 B2. Скачивание и распаковка Spark 3.5.7 (macOS)
 Создайте папку под инструменты и скачайте архив:
 
-bash
+```bash
 Копировать код
 mkdir -p ~/tools
 cd ~/tools
 curl -L -O https://dlcdn.apache.org/spark/spark-3.5.7/spark-3.5.7-bin-hadoop3.tgz
 Распакуйте архив:
 
-bash
+```bash
 Копировать код
 tar -xvf spark-3.5.7-bin-hadoop3.tgz
 Папка с Spark:
 
-text
+```text
 Копировать код
 ~/tools/spark-3.5.7-bin-hadoop3
 B3. Настройка SPARK_HOME и PATH на macOS
 Откройте / создайте файл ~/.zshrc и добавьте строки:
 
-bash
+```bash
 Копировать код
 export SPARK_HOME="$HOME/tools/spark-3.5.7-bin-hadoop3"
 export PATH="$SPARK_HOME/bin:$PATH"
 Примените настройки:
 
-bash
+```bash
 Копировать код
 source ~/.zshrc
 Проверьте:
 
-bash
+```bash
 Копировать код
 echo $SPARK_HOME
 spark-shell --version
@@ -301,29 +292,29 @@ spark-shell --version
 
 B4. Проверка Spark на macOS
 Scala shell
-bash
+```bash
 Копировать код
 spark-shell
 В консоли:
 
-scala
+```scala
 Копировать код
 scala> sc.parallelize(1 to 5).sum()
 res0: Double = 15.0
 PySpark
-bash
+```bash
 Копировать код
 pyspark
 Внутри REPL:
 
-python
+```python
 Копировать код
 >>> sc
 >>> sc.version
 B5. Тестовый скрипт PySpark (macOS)
 Создайте файл ~/tools/test_spark.py:
 
-python
+```python
 Копировать код
 from pyspark.sql import SparkSession
 
@@ -339,7 +330,7 @@ df.show()
 spark.stop()
 Запуск:
 
-bash
+```bash
 Копировать код
 cd ~/tools
 python3 test_spark.py
@@ -349,12 +340,12 @@ python3 test_spark.py
 Вариант 1. PySpark через pip (минимум боли для студентов)
 В той же среде (виртуальное окружение / Conda), где установлен Jupyter, выполните:
 
-bash
+```bash
 Копировать код
 pip install pyspark
 Запустите Jupyter (Notebook / Lab) и в новой ячейке:
 
-python
+```python
 Копировать код
 from pyspark.sql import SparkSession
 
@@ -380,7 +371,7 @@ PATH содержит $SPARK_HOME/bin (или %SPARK_HOME%\bin на Windows).
 Часть D. Мини-чеклист для отладки (Windows & macOS)
 Если Spark не запускается или не создаётся SparkContext:
 
-java -version
+```java -version
 Убедитесь, что используется Java 17, а не 1.8 / 11 / 21.
 
 JAVA_HOME
